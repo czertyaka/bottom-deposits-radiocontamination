@@ -382,10 +382,14 @@ def calculate_doses_in_special_points(
     for point_data in inp:
         coo = Coordinate(lon=point_data["lon"], lat=point_data["lat"])
         row = point_data["name"]
+        total_e_max_10_acute = 0
+        total_e_max_10_period = 0
         for act_map in activity_maps:
             results = calculate_dose(act_map, coo)
             e_max_10_acute = results[0]
+            total_e_max_10_acute += e_max_10_acute
             e_max_10_period = results[2]
+            total_e_max_10_period += e_max_10_period
             row += (
                 f"; {act_map.nuclide}: acute {e_max_10_acute:.2e};"
                 f" period {e_max_10_period:.2e}"
@@ -409,6 +413,10 @@ def calculate_doses_in_special_points(
                     *dict_of_atm_class_to_list(results[10]),
                 ]
             )
+        row += (
+            f"; total: acute {total_e_max_10_acute:.2e};"
+            f"period: {total_e_max_10_period:.2e}"
+        )
         print(row)
 
     f.close()

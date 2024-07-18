@@ -14,7 +14,7 @@ import rasterio
 from matplotlib import pyplot as plt
 from matplotlib import ticker
 import matplotlib.image as image
-from matplotlib.colors import LogNorm
+from matplotlib.colors import *
 import matplotlib.patches as patches
 import numpy as np
 from math import log10, floor
@@ -98,8 +98,8 @@ def plot_act_maps() -> None:
                     ax = plt.subplot()
                     shw = ax.imshow(
                         data,
-                        cmap=plt.get_cmap("YlGn"),
-                        norm=LogNorm(vmin=1e7, vmax=data.max()),
+                        cmap=plt.get_cmap("copper_r"),
+                        norm=LogNorm(vmin=1e6, vmax=data.max()),
                         extent=extent,
                     )
                     plt.colorbar(shw, fraction=0.046, pad=0.04)

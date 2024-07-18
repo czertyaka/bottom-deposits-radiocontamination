@@ -415,7 +415,7 @@ def calculate_doses_in_special_points(
             )
         row += (
             f"; total: acute {total_e_max_10_acute:.2e};"
-            f"period: {total_e_max_10_period:.2e}"
+            f" period: {total_e_max_10_period:.2e}"
         )
         print(row)
 
